@@ -11,4 +11,4 @@ testrun2:
 testrun3:
 	gendiff 	__fixtures__/filepath1.yml __fixtures__/filepath2.yml		
 jest:
-	NODE_OPTIONS=--experimental-vm-modules npx jest	
+	NODE_OPTIONS=--experimental-vm-modules npx jest
