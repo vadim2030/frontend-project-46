@@ -16,5 +16,5 @@ jobs:
         env:
           CC_TEST_REPORTER_ID: ${{secrets.KEY_CODECLIMATE}}
         with:
-          coverageCommand: NODE_OPTIONS=--experimental-vm-modules npx jest --coverage
+          coverageCommand: make jest
           debug: true
