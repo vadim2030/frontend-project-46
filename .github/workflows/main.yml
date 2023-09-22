@@ -12,8 +12,9 @@ jobs:
         run: make lint
       - name: test
         run: make jest
-      - uses: paambaati/codeclimate-action@v2.2.4
+      - uses: paambaati/codeclimate-action@v4.0.0
         env:
-          CC_TEST_REPORTER_ID: ${{ secrets.KEY_CODECLIMATE }}
+          CC_TEST_REPORTER_ID: ${{secrets.KEY_CODECLIMATE}}
         with:
           coverageCommand: npx jest --coverage  
+          debug: true
