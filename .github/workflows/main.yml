@@ -1,0 +1,19 @@
+name: check 
+on: push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+      - name: install
+        run: npm install
+      - name: run lint
+        run: make lint
+      - name: test
+        run: make jest
+      - uses: paambaati/codeclimate-action@v2.2.4
+        env:
+          CC_TEST_REPORTER_ID: ${{ secrets.KEY_CODECLIMATE }}
+        with:
+          coverageCommand: npx jest --coverage  
