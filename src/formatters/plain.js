@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const getContent = (content) => {
+const getStringify = (content) => {
   if (_.isObject(content)) {
     return '[complex value]';
   }
@@ -10,9 +10,9 @@ const getContent = (content) => {
 const plain = (data, way = []) => {
   const result = data.reduce((acc, obj) => {
     const path = [...way, obj.key];
-    switch (obj.status) {
+    switch (obj.type) {
       case 'added':
-        return [...acc, `Property '${path.join('.')}' was added with value: ${getContent(
+        return [...acc, `Property '${path.join('.')}' was added with value: ${getStringify(
           obj.value,
         )}`];
       case 'nested':
@@ -20,7 +20,7 @@ const plain = (data, way = []) => {
       case 'deleted':
         return [...acc, `Property '${path.join('.')}' was removed`];
       case 'changed':
-        return [...acc, `Property '${path.join('.')}' was updated. From ${getContent(obj.value1)} to ${getContent(obj.value2)}`];
+        return [...acc, `Property '${path.join('.')}' was updated. From ${getStringify(obj.value1)} to ${getStringify(obj.value2)}`];
       case 'unchanged':
         return acc;
       default:

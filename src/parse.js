@@ -1,14 +1,14 @@
 import yaml from 'js-yaml';
 
-const newExtension = (data, format) => {
-  switch (format) {
-    case 'json':
-      return JSON.parse(data);
-    case 'yml':
-    case 'yaml':
-      return yaml.load(data);
-    default: throw new Error(`I don't know how to deal with files with extension ${format}`);
-  }
+const dataParsers = {
+  json: (data) => JSON.parse(data),
+  yaml: (data) => yaml.load(data),
+  yml: (data) => yaml.load(data),
+};
+const dataParse = (data, format) => {
+  const getData = dataParsers[format];
+  if (getData) return getData(data);
+  throw new Error(`I don't know how to deal with files with extension ${format}`);
 };
 
-export default newExtension;
+export default dataParse;
